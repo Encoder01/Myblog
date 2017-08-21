@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well">
+        <!-- Title -->
+        <h1> <%= @post.title%> </h1>
+        <!-- Preview Image -->
+        <%= @post.description_image.html_safe%>
+        <hr>
+        <!-- Post Content -->
+        <p>
+          <div><%= @post.body.html_safe%></div>
+        </p>
+        <hr>
+        <div>
+          <%= link_to 'Anasayfa Dön', root_path%>
+        </div>
+
+        <!-- Date/Time -->
+        <p><span class="glyphicon glyphicon-time"></span><%= time_ago_in_words @post.created_at%>
+          <!-- Author -->
+        <p class="lead">
+        Yazar:<%= @post.admin_user.username%>
+        </p>
+      </div>
+    </div>
+  </div>
+
+<h2>Yorumlar</h2>
+<div id="disqus_thread"></div>
+
+
+<%# Disqus yorum scriptini ekledik%>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://rails-on-forum.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+

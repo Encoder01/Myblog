@@ -1,0 +1,32 @@
+<%= form_for @post do |form| %>
+    <div class="col-md-8">
+      <%= form.label :admin_user_id%>
+      <%= form.select(:admin_user_id, [AdminUser.all.map(&:id)], {include_blank: "Select something"}, { :class => 'my_style_class' }) %>
+    </div>
+    <div class="col-md-8">
+      <%= form.label :admin_user_id%>
+      <%= form.select(:category_id, [Category.all.map(&:id)], {include_blank: "Select something"}, { :class => 'my_style_class' }) %>
+    </div>
+    <div class="col-md-8">
+    <%= form.label :title%>
+    <%= form.text_field :title%>
+    </div>
+
+    <div class="col-md-8">
+      <%= form.label :içerik%>
+      <%= form.cktext_area :body%>
+    </div>
+    <div class="col-md-8">
+      <%= form.label :içerik_Açıklaması%>
+      <%= form.cktext_area :body_description%>
+    </div>
+    <div class="col-md-8">
+      <%= form.label :açıklama_resimi%>
+      <%= form.cktext_area :description_image%>
+    </div>
+
+  <div class="col-md-12">
+    <%= form.submit %>
+  </div>
+    <br>
+<% end %>
