@@ -1,1 +1,23 @@
-<p><b>name:</b> <%= @categories.name%></p>
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2><%= @category.name%></h2>
+      <% @posts.each do |post| %>
+          <div class="well">
+            <h2>
+              <%= post.title%>
+            </h2>
+            <hr>
+            <div class="image-clean"><%= post.description_image.html_safe %></div>
+            <hr>
+            <div><%= post.body_description.html_safe %></div>
+            <hr>
+            <%= link_to 'Devamını oku', post ,class: "btn btn-primary"%><span class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
+      <% end %>
+
+      <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

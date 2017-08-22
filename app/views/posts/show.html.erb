@@ -16,10 +16,15 @@
         <div>
           <%= link_to 'Anasayfa Dön', root_path%>
         </div>
-
+        <br/>
         <!-- Date/Time -->
-        <p><span class="glyphicon glyphicon-time"></span><%= time_ago_in_words @post.created_at%>
-          <!-- Author -->
+
+        <p><span class="glyphicon glyphicon-time"></span><%= time_ago_in_words @post.created_at%> |
+          <span class="glyphicon glyphicon-pushpin"></span>
+          <%= link_to @post.category.name, category_path(id: @post.category.id)%> |
+          <span class="glyphicon glyphicon-eye-open"></span> 6 Okunma</p>
+
+        <!-- Author -->
         <p class="lead">
         Yazar:<%= @post.admin_user.username%>
         </p>

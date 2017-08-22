@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :posts
-  resources :categories
+  resources :categories do
+    resources :posts
+  end
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

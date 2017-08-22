@@ -2,11 +2,17 @@ class CategoriesController < ApplicationController
   
   def index
     @categories = Category.all
-    @posts = Post.all
+    
+  end
+  def count
+    @post = Post.find(params[:id])
+    @category = @post.category.count(params[:id])
   end
   
   def show
     @categories = Category.all
-    @categories = Category.find(params[:id])
+    @category = Category.find(params[:id])
+    @title = @category.name
+    @posts = @category.posts.paginate(page: params[:page], per_page: 2)
   end
 end
