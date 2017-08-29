@@ -43,7 +43,7 @@ group :development do
 end
 
 group :development do
-	gem 'mysql2', '>= 0.3.18', '< 0.5'
+	gem 'sqlite3'
 end
 
 group :production do
