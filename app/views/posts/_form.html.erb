@@ -14,15 +14,15 @@
 
     <div class="col-md-8">
       <%= form.label :içerik%>
-      <%= form.cktext_area :body%>
+      <%= form.cktext_area :body  %>
     </div>
     <div class="col-md-8">
       <%= form.label :içerik_Açıklaması%>
-      <%= form.cktext_area :body_description%>
+      <%= form.text_area :body_description%>
     </div>
     <div class="col-md-8">
-      <%= form.label :açıklama_resimi%>
-      <%= form.cktext_area :description_image%>
+      <%= form.label :description_image%>
+      <%= form.file_field :description_image%>
     </div>
 
   <div class="col-md-12">

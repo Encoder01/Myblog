@@ -4,10 +4,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
     
   end
-  def count
-    @post = Post.find(params[:id])
-    @category = @post.category.count(params[:id])
-  end
+  
   
   def show
     @categories = Category.all

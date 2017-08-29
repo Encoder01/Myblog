@@ -1,62 +1,320 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="well">
-        <!-- Title -->
-        <h1> <%= @post.title%> </h1>
-        <!-- Preview Image -->
-        <%= @post.description_image.html_safe%>
-        <hr>
-        <!-- Post Content -->
-        <p>
-          <div><%= @post.body.html_safe%></div>
-        </p>
-        <hr>
-        <div>
-          <%= link_to 'Anasayfa Dön', root_path%>
-        </div>
-        <br/>
-        <!-- Date/Time -->
+<div class="site_main_container">
+  <!-- start stie content -->
+  <section id="content" class="site_content">
+    <div class="container">
+      <div class="row">
+        <main class="main_content col-md-12">
+          <div class="blog_posts_wrapper blog_single blog_posts_single">
+            <div id="post-64" class="blog_post_container post-64 post type-post status-publish format-image has-post-thumbnail hentry category-life-style tag-design post_format-post-format-image" >
+              <div class="blog_post clearfix">
+                <div class="blog_post_banner blog_post_image">
+                  <%= image_tag(@post.description_image,width:"960" ,height:"402" ,class:"img-responsive wp-post-image")  %>
+                </div>
+                <div class="blog_post_title">
+                  <h1 class="entry-title title post_title"><%= @post.title %></h1>
+                </div>
+                <div class="blog_post_meta clearfix">
+                  <span class="blog_meta_item blog_meta_tags"><span class="glyphicon glyphicon-pushpin"></span>Kategori
+																		<%= link_to @post.category.name, category_path(id: @post.category.id)%>
+																		</span>
+                  <span class="blog_meta_item blog_meta_date">
 
-        <p><span class="glyphicon glyphicon-time"></span><%= time_ago_in_words @post.created_at%> |
-          <span class="glyphicon glyphicon-pushpin"></span>
-          <%= link_to @post.category.name, category_path(id: @post.category.id)%> |
-          <span class="glyphicon glyphicon-eye-open"></span> 6 Okunma</p>
+																			 <span class="screen-reader-text"></span>
+																			<span class="glyphicon glyphicon-time"></span>
+																			<%=time_ago_in_words(@post.created_at)%> Önce
+																		</span>
 
-        <!-- Author -->
-        <p class="lead">
-        Yazar:<%= @post.admin_user.username%>
-        </p>
+																		<span class="screen-reader-text"></span>
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                    <%= @post.reads_counter%> Okunma
+                  <span>|</span>
+                                    <span class=" blog_meta_author">
+																			<span class="author vcard">Yazar:
+																					<%= image_tag("profile.jpg",  width:"25", height:"25", alt:"Huzeyfe Dinç", class:"avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo") %>
+                                          <%= @post.admin_user.username %>
+																			</span>
+																		</span>
+                </div>
+                <div class="entry-content blog_post_text blog_post_description">
+                  <%= @post.body.html_safe%>
+                </div>
+
+
+                <div class="blog_post_control clearfix">
+                  <div class="blog_post_control_item blog_post_share">
+																			<span class="share_item share_sign">
+																				<i class="fa fa-share "></i>
+																			</span>
+                    <span class="social_share_item_wrapper">
+																				<a rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=https://ahmad.works/writing/amazing-classic-interior-design-with-perfect-lighting/" class="share_item share_item_social share_facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://ahmad.works/writing/amazing-classic-interior-design-with-perfect-lighting/', 'facebook-share-dialog', 'width=626,height=436');
+                                            return false;">
+																					<i class="fa fa-facebook"></i>
+																				</a>
+																			</span>
+                    <span class="social_share_item_wrapper">
+																				<a rel="nofollow" href="https://twitter.com/share?url=https://ahmad.works/writing/amazing-classic-interior-design-with-perfect-lighting/" target="_blank" class="share_item share_item_social share_twitter">
+																					<i class="fa fa-twitter"></i>
+																				</a>
+																			</span>
+                    <span class="social_share_item_wrapper">
+																				<a rel="nofollow" href="https://plus.google.com/share?url=https://ahmad.works/writing/amazing-classic-interior-design-with-perfect-lighting/" onclick="javascript:window.open(this.href,
+                                            '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+                                            return false;" class="share_item share_item_social share_googleplus">
+																					<i class="fa fa-google-plus"></i>
+																				</a>
+																			</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- #post-## -->
+            <!-- .author-info -->
+            <section class='post_navigation'>
+              <div class='row'>
+                <h3 class="screen-reader-text">Post Navigation</h3>
+                <div class="post_navigation_item post_navigation_prev has_post_thumbnail  col-md-6">
+                  <% if @post.previous %>
+                  <div class="post_thumbnail_wrapper">
+                    <%= link_to( @post.previous,class:"post_navigation_arrow",title:"#{@post.previous.title}") do %>
+                        <%=  image_tag("#{@post.previous.description_image}" ,width:"70",height:"80" ,class:"img-responsive wp-post-image")%>
+                    <%end%>
+                  </div>
+
+                  <div class="post_info_wrapper">
+                    <%= link_to(@post.previous,class:"post_navigation_arrow",title:"#{@post.previous.title}") do %>
+                  <span class="post_navigation_title title">Önceki Konu:</span>
+                    <% end %>
+                    <h4 class="title post_title">
+                      <%= link_to( "#{@post.previous.title}",@post.previous,class:"post_navigation_arrow",title:"#{@post.previous.title}")  %>
+                    </h4>
+                    <p></p>
+                  </div>
+                  <%end%>
+                </div>
+
+                <% if @post.next %>
+                <div class="post_navigation_item post_navigation_next has_post_thumbnail pull-right col-md-6">
+                  <div class="post_thumbnail_wrapper">
+                    <%= link_to( @post.next,class:"post_navigation_arrow",title:"#{@post.next.title}")  do %>
+                        <%=  image_tag "#{@post.next.description_image}" ,width:"70",height:"80" ,class:"img-responsive wp-post-image" %>
+                    <%end%>
+                  </div>
+                  <div class="post_info_wrapper">
+                    <%= link_to(@post.next,class:"post_navigation_arrow",title:"#{@post.next.title}")  do %>
+                  <span class="post_navigation_title title">Sonraki konu:</span>
+                    <% end%>
+                    <h4 class="title post_title">
+                      <%= link_to( "#{@post.next.title}",@post.next,class:"post_navigation_arrow",title:"#{@post.next.title}")  %>
+                          </h4>
+                    <p></p>
+                  </div>
+                </div>
+                <%end%>
+              </div>
+            </section>
+            <div class="post_related">
+              <h3 class="related_title title">İlgili Konular:</h3>
+              <div class="row">
+                      <div  class="blog_post_container col-md-4  post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-girl tag-image post_format-post-format-image" >
+                        <div class="blog_post clearfix">
+                          <div class="blog_post_title">
+                            <h4 class="entry-title title post_title">
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                <!-- #post-## -->
+              </div>
+              <!-- meta slider -->
+              <div style="width: 80%; margin: 0 auto;" class="metaslider metaslider-flex metaslider-193 ml-slider nav-hidden nav-hidden">
+                <style type="text/css" id="metaslider-css-193">
+                  #metaslider_193.flexslider .slides li {margin-right: 5px !important;}
+                  .metaslider-193 .flexslider .flex-control-paging li a,
+                  .metaslider-193 .flexslider .flex-control-paging li a:hover {
+                    padding: 0;
+                    box-shadow: none;
+                    text-indent: -9999px;
+                    border-style: solid;
+                    display: inline-block;
+                    border-color: rgba(0,0,0,1);
+                    border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    border-width: 0px;
+                    border: 0px solid rgba(0,0,0,1);
+                    line-height: 12px;
+                    width: 12px;
+                    height: 12px;
+                    margin: 0 4px;
+                    background: rgb(0,0,0);
+                    background: rgba(0,0,0,0.5);
+                    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,0.5)), to(rgba(0,0,0,0.5)));
+                    background: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                    background: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                    background: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                    background: -o-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                    background: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                  }
+                  .metaslider-193 .flexslider .flex-control-paging li {
+                    margin: 0;
+                    text-indent: 0;
+                    width: auto;
+                  }
+                  .metaslider-193 .flexslider .flex-control-paging li a.flex-active {
+                    border: 0px solid rgba(0,0,0,1);
+                    background: rgb(0,0,0);
+                    background: rgba(0,0,0,1);
+                    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,1)), to(rgba(0,0,0,1)));
+                    background: -webkit-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,1));
+                    background: -moz-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,1));
+                    background: -ms-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,1));
+                    background: -o-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,1));
+                    background: linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,1));
+                  }
+                  .metaslider-193 .flexslider .flex-control-paging {
+                    line-height: 12px;
+                    z-index: 99;
+                    padding: 0;
+                    text-align: left;
+                    margin: 10px 0px;
+                    width: 80%;
+                    top: auto;
+                    right: auto;
+                    bottom: auto;
+                    left: auto;
+                    position: absolute;
+                    text-align: center;
+                  }
+                  .metaslider-193 .flexslider .caption-wrap {
+                    opacity: 1;
+                    margin: 0px 0px;
+                    color: rgb(143, 143, 143);
+                    background: rgb(255, 255, 255);
+                    background: rgba(255, 255, 255, 0);
+                    width: 80%;
+                    top: auto;
+                    right: auto;
+                    bottom: auto;
+                    left: auto;
+                    clear: both;
+                    position: relative;
+                    border-radius: 0px;
+                    -webkit-border-radius: 0px;
+                    -moz-border-radius: 0px;
+                  }
+                  .metaslider-193 .flexslider .flex-direction-nav .flex-prev {
+                    background: transparent url(https://www.metaslider.com/wp-content/plugins/ml-slider-pro/modules/theme_editor/assets/arrows/white.png) 0 -95px no-repeat;
+                    margin-top: -18.5px;
+                    width: 20px;
+                    height: 37px;
+                    opacity: 0;
+                    left: 0px;
+                    padding: 0;
+                  }
+                  .metaslider-193 .flexslider .flex-direction-nav .flex-next {
+                    background: transparent url(https://www.metaslider.com/wp-content/plugins/ml-slider-pro/modules/theme_editor/assets/arrows/white.png) 100% -95px no-repeat;
+                    margin-top: -18.5px;
+                    width: 20px;
+                    height: 37px;
+                    opacity: 0;
+                    right: 0px;
+                    padding: 0;
+                  }
+                  .metaslider-193 .flexslider:hover .flex-direction-nav .flex-prev {
+                    left: 5px;
+                    opacity: 0.7;
+                  }
+                  .metaslider-193 .flexslider:hover .flex-direction-nav .flex-next {
+                    right: 5px;
+                    opacity: 0.7;
+                  }
+                  .metaslider-193 {
+                    margin-bottom: 32px;
+                  }
+                </style>
+
+                <div id="metaslider_container_193">
+                  <div id="metaslider_193" class="flexslider">
+                    <ul class="slides">
+                      <% @posts.limit(10).each do |tag| if tag.category_id == @post.category_id && tag.id != @post.id %>
+                      <li  style="display: none; width: 100%;"><%= image_tag tag.description_image, height:"200" ,width:"300", alt:"" %><div class='caption-wrap'><div class='caption'><strong><%= link_to tag,class: "post_navigation_arrow" do%> <span class="post_navigation_title title"><%= tag.title%></span><%end%></strong></div></div></li>
+                              <%end%>
+                          <%end%>
+                    </ul>
+                  </div>
+                </div>
+
+
+                <script type="text/javascript">
+                    var metaslider_193 = function($) {
+                        $('#metaslider_193').flexslider({
+                            slideshowSpeed:5000,
+                            animation:'slide',
+                            controlNav:false,
+                            directionNav:true,
+                            pauseOnHover:true,
+                            direction:'horizontal',
+                            reverse:false,
+                            animationSpeed:600,
+                            prevText:false,
+                            nextText:false,
+                            easing:"linear",
+                            slideshow:true,
+                            itemWidth:300,
+                            minItems:1,
+                            itemMargin:5
+                        });
+                    };
+                    var timer_metaslider_193 = function() {
+                        if ( typeof window.jQuery === 'undefined' ) {
+                            window.setTimeout(timer_metaslider_193, 100);
+                        } else {
+                            window.jQuery(function() { metaslider_193(window.jQuery) });
+                        }
+                    };
+                    timer_metaslider_193();
+                </script>
+              </div>
+              <!--// meta slider-->
+
+
+
+
+
+            </div>
+            <section id="comments" class="comments-area">
+              <div id="disqus_thread"></div><%# Disqus yorum scriptini ekledik%>
+              <script>
+
+                  /**
+                   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                  /*
+                  var disqus_config = function () {
+                  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                  };
+                  */
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                      var d = document, s = d.createElement('script');
+                      s.src = 'https://rails-on-forum.disqus.com/embed.js';
+                      s.setAttribute('data-timestamp', +new Date());
+                      (d.head || d.body).appendChild(s);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the
+                <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+              </noscript>
+            </section>
+  <!-- .comments-area -->
+          </div>
+<!-- .blog_posts_wrapper -->
+        </main>
+<!-- .main_content -->
       </div>
     </div>
-  </div>
-
-<h2>Yorumlar</h2>
-<div id="disqus_thread"></div>
-
-
-<%# Disqus yorum scriptini ekledik%>
-<script>
-
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://rails-on-forum.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
+  </section>
 </div>
-
 

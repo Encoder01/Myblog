@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821123735) do
+ActiveRecord::Schema.define(version: 20170826194211) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -45,14 +45,14 @@ ActiveRecord::Schema.define(version: 20170821123735) do
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "category"
+    t.string "name"
+    t.integer "posts_count", default: 0
   end
 
   create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
     t.integer "data_file_size"
-    t.string "data_fingerprint"
     t.string "type", limit: 30
     t.integer "width"
     t.integer "height"
@@ -66,11 +66,13 @@ ActiveRecord::Schema.define(version: 20170821123735) do
     t.text "body"
     t.text "body_description"
     t.bigint "admin_user_id"
-    t.integer "categories_id", null: false
+    t.integer "category_id"
+    t.integer "reads_counter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "description_image"
+    t.string "description_image", limit: 500
     t.index ["admin_user_id"], name: "index_posts_on_admin_user_id"
+    t.index ["category_id"], name: "category_id"
   end
 
   add_foreign_key "posts", "admin_users"

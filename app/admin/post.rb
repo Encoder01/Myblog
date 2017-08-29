@@ -7,15 +7,16 @@ ActiveAdmin.register Post do
 # or
 #
   
-  permit_params :title,:body, :body_description,:description_image,:admin_user_id,:category_id
+  permit_params :title,:body, :body_description,:description_image,:category_id,:admin_user_id
+
 
   index do
     selectable_column
     id_column
-    column :admin_user_id
-    column :title
-    column :body_description
     column :created_at
+    column :title
+    column :username
+    column :reads_counter
     actions
   end
 
@@ -25,10 +26,7 @@ ActiveAdmin.register Post do
   filter :created_at
 
   form do |f|
-    @post = AdminUser.all.map(&:id)
-    @category = Category.pluck(:id)
-    f.select(:admin_user_id,[@post],{include_blank: "Admini Seçin"},{ class: "form-control" })
-    f.select(:category_id,[@category],{include_blank: "Kategori Seçin"},{ class: "form-control" })
+    f.select(:category_id,Category.all.map {|f| [f.name,f.id]},{include_blank: "Kategori Seçin"},{ class: "form-control" })
     f.inputs do
       f.input :title , class: "form-control"
     end
@@ -47,14 +45,17 @@ ActiveAdmin.register Post do
    
     div class:"col-md-12" do
       f.label :Açıklama_resmi
-      f.cktext_area :description_image, class: "form-control"
+      f.file_field :description_image, class: "form-control"
     end
   end
     
     f.actions
   end
 
-  
+  after_build do |currm|
+    currm.admin_user = current_admin_user
+    currm.reads_counter = 0
+  end
 
   
   

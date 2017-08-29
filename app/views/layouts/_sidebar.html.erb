@@ -1,0 +1,57 @@
+<div id="page" class="hfeed site" style="margin-top: 20px">
+    <aside class="side_content widget_area col-md-3 pull-right">
+      <h3 class="screen-reader-text">Site Sidebar</h3>
+      <div id="secondary" class="secondary">
+        <div id="widget-area" class="widget-area" role="complementary">
+          <div id="categories-4" class="widget_container widget_content widget widget_categories clearfix">
+            <h4 class="widget_title title">
+              <span class="page_header_title">Kategoriler</span>
+            </h4>
+            <ul>
+              <% @categories.each do |category|%>
+                  <li class="cat-item cat-item-1">
+                    <%=link_to category.name ,category%>(<span><%= category.posts_count%></span>)
+                  </li>
+              <%end%>
+            </ul>
+          </div>
+          <div id="postlist-widget-5" class="widget_container widget_content widget asalah-postlist-widget clearfix">
+            <h4 class="widget_title title">
+              <span class="page_header_title">En Çok Okunanlar</span>
+            </h4>
+            <div class="asalah_post_list_widget">
+              <ul class="post_list">
+                <% Post.order('posts.reads_counter DESC').limit(5).each do |post|%>
+                    <li class="post_item clearfix">
+                      <div class="post_thumbnail_wrapper">
+                        <%= image_tag(post.description_image ,height: '50', width: '60',class:'img-responsive wp-post-image' ) %>
+                      </div>
+                      <div class="post_info_wrapper">
+                        <h5 class="title post_title">
+                          <%= link_to post.title,post%>(<%= post.reads_counter%>)
+                        </h5>
+                        <span class="post_meta_item post_meta_time post_time"><%= time_ago_in_words(post.created_at)%></span>
+                      </div>
+                    </li>
+                <%end%>
+              </ul>
+            </div>
+          </div>
+          <div id="search-4" class="widget_container widget_content widget widget_search clearfix">
+            <form role="search" class="search-form" method="get" action="<%= posts_path %>">
+              <label>
+                <span class="screen-reader-text">Arama yap:</span>
+                <%= text_field_tag :search, params[:search], :placeholder => "Ara" ,:class => "search-field",title:"Arama yap:" %>
+              </label>
+              <i class="search_submit_icon fa fa-search">
+                <input type="#{<% submit_tag%>}" class="search-submit" value="">
+                </input>
+              </i>
+            </form>
+          </div>
+        </div>
+        <!-- .widget-area -->
+      </div>
+      <!-- .secondary -->
+    </aside>
+</div>

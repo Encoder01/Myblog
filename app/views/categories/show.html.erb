@@ -1,23 +1,144 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <h2><%= @category.name%></h2>
-      <% @posts.each do |post| %>
-          <div class="well">
-            <h2>
-              <%= post.title%>
-            </h2>
-            <hr>
-            <div class="image-clean"><%= post.description_image.html_safe %></div>
-            <hr>
-            <div><%= post.body_description.html_safe %></div>
-            <hr>
-            <%= link_to 'Devamını oku', post ,class: "btn btn-primary"%><span class="glyphicon glyphicon-chevron-right"></span></a>
+<div id="page" class="hfeed site" >
+    <aside class="side_content widget_area col-md-3 pull-right">
+      <h3 class="screen-reader-text">Site Sidebar</h3>
+      <div id="secondary" class="secondary">
+        <div id="widget-area" class="widget-area" role="complementary">
+          <div id="categories-4" class="widget_container widget_content widget widget_categories clearfix">
+            <h4 class="widget_title title">
+              <span class="page_header_title">Kategoriler</span>
+            </h4>
+            <ul>
+              <% @categories.each do |category|%>
+                  <li class="cat-item cat-item-1">
+                    <%=link_to category.name ,category%>(<span><%= category.posts_count%></span>)
+                  </li>
+              <%end%>
+            </ul>
           </div>
-      <% end %>
+          <div id="postlist-widget-5" class="widget_container widget_content widget asalah-postlist-widget clearfix">
+            <h4 class="widget_title title">
+              <span class="page_header_title">En Çok Okunanlar</span>
+            </h4>
+            <div class="asalah_post_list_widget">
+              <ul class="post_list">
+                <% Post.order('posts.reads_counter DESC').limit(5).each do |post|%>
+                    <li class="post_item clearfix">
+                      <div class="post_thumbnail_wrapper">
+                        <%= image_tag(post.description_image ,height: '50', width: '60',class:'img-responsive wp-post-image' ) %>
+                      </div>
+                      <div class="post_info_wrapper">
+                        <h5 class="title post_title">
+                          <%= link_to post.title,post%>(<%= post.reads_counter%>)
+                        </h5>
+                        <span class="post_meta_item post_meta_time post_time"><%= time_ago_in_words(post.created_at)%></span>
+                      </div>
+                    </li>
+                <%end%>
+              </ul>
+            </div>
+          </div>
+          <div id="search-4" class="widget_container widget_content widget widget_search clearfix">
+            <form role="search" class="search-form" method="get" action="<%= posts_path %>">
+              <label>
+                <span class="screen-reader-text">Arama yap:</span>
+                <%= text_field_tag :search, params[:search], :placeholder => "Ara" ,:class => "search-field",title:"Arama yap:" %>
+              </label>
+              <i class="search_submit_icon fa fa-search">
+                <input type="#{<% submit_tag%>}" class="search-submit" value="">
+                </input>
+              </i>
+            </form>
+          </div>
+        </div>
+        <!-- .widget-area -->
+      </div>
+      <!-- .secondary -->
+    </aside>
+  <!-- start site main container -->
+  <div class="site_main_container">
+    <!-- start stie content -->
+    <section id="content" class="site_content">
+      <div class="container">
+        <div class="row">
+          <h4 class="page-title screen-reader-text">Blog Posts</h4>
+          <main class="main_content col-md-9 pull-left">
+            <div class="blog_posts_wrapper blog_posts_list clearfix  list_blog_style">
+              <% @posts.each do |post|%>
+                  <article class="blog_post_container post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-people post_format-post-format-image" >
+                    <div class="blog_post clearfix">
+                      <div class="posts_list_wrapper clearfix">
+                        <div class="post_thumbnail_wrapper">
+                          <div class="blog_post_banner blog_post_image">
+                            <a class="post-thumbnail" href="https://ahmad.works/writing/restaurant-employer-read-clients-orders-on-his-ipad/" aria-hidden="true">
+                              <%= image_tag post.description_image  ,class:"img-responsive wp-post-image" ,alt:"#{post.title}" %>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="post_info_wrapper">
+                          <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
+                          <div class="blog_post_title">
+                            <h2 class="entry-title title post_title">
+                              <%= link_to "#{post.title}" , post%>
+                            </h2>
+                          </div>
+                          <div class="entry-content blog_post_text blog_post_description">
+                            <%= post.body_description.html_safe%>
+                          </div>
+                          <div class="blog_post_control clearfix">
+                            <div class="blog_post_control_item blog_post_readmore">
+                              <%= link_to "Devamını oku",post, class:"read_more_link"%>
+                            </div>
+                            <div class="blog_post_control_item blog_post_share">
+                              <span class="share_item share_sign"><i class="fa fa-share "></i></span>
 
-      <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
-    </div>
+                              <span class="social_share_item_wrapper">
+                            <a rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=https://<%= post_url(post) %>"
+                               class="share_item share_item_social share_facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://ahmad.works/writing/restaurant-employer-read-clients-orders-on-his-ipad/', 'facebook-share-dialog', 'width=626,height=436');
+                                return false;"><i class="fa fa-facebook"></i></a>
+                          </span>
+
+                              <span class="social_share_item_wrapper">
+                            <a rel="nofollow" href="https://twitter.com/share?url=https://<%= post_url(post) %>" target="_blank"
+                               class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a>
+                          </span>
+
+                              <span class="social_share_item_wrapper">
+                            <a rel="nofollow" href="https://plus.google.com/share?url=<%= post_url(post) %>" onclick="javascript:window.open(this.href,
+                                '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+                                return false;" class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a>
+                          </span>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
+                      </div>
+                      <!-- .posts_list_wrapper -->
+                    </div>
+                  </article>
+                  <!-- Reading progress bar -->
+              <%end%>
+            </div>
+            <!-- .blog_posts_wrapper -->
+            <div class="text-center">
+              <nav class="navigation pagination " style="">
+                <div class="nav-links" >
+                  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+                </div>
+              </nav>
+            </div>
+          </main>
+          <!-- .main_content -->
+        </div>
+        <!-- .row -->
+      </div>
+      <!-- .container -->
+    </section>
+    <!-- .site_content -->
   </div>
+  <!-- .site_main_container -->
+  <!-- start site side container -->
+</div>
+<!-- end site side container .site_side_container -->
 </div>

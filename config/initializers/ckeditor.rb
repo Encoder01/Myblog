@@ -5,7 +5,6 @@ Ckeditor.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'ckeditor/orm/active_record'
-  
 
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types

@@ -1,5 +1,7 @@
+<% if current_admin_user%>
 <h1>New Post</h1>
+    <%= render 'form', post: @post %>
 
-<%= render 'form', post: @post %>
-
-<%= link_to 'Back', posts_path %>
+    <%else%>
+    <% controller.redirect_to root_path%>
+<%end%>
