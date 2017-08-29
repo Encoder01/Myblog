@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="787d17da-b14a-4fa7-93fb-b23a7b4036b9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deneme3.iml" afterPath="$PROJECT_DIR$/.idea/deneme3.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -27,7 +24,7 @@
       <file leaf-file-name="Gemfile" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
+            <state relative-caret-position="1395">
               <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
               <folding />
             </state>
@@ -244,12 +241,12 @@
       <workItem from="1503649769597" duration="31877000" />
       <workItem from="1503737152026" duration="19804000" />
       <workItem from="1503854159030" duration="2215000" />
-      <workItem from="1503967033109" duration="173000" />
+      <workItem from="1503967033109" duration="360000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146009000" />
+    <option name="totallyTimeSpent" value="146196000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1848" height="1102" extended-state="6" />
@@ -611,7 +608,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
+        <state relative-caret-position="1395">
           <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
           <folding />
         </state>
