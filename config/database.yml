@@ -50,5 +50,7 @@ test:
 production:
   adapter: postgresql
   database: deneme3_production
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: deneme3
   password: <%= ENV['DENEME3_DATABASE_PASSWORD'] %>
