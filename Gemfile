@@ -21,7 +21,7 @@ gem 'will_paginate-bootstrap'
 gem 'will_paginate'
 gem 'bootstrap-slider-rails'
 gem 'ckeditor-imgur'
-gem 'sqlite3'
+
 
 gem 'rails', '~> 5.1.3'
 gem 'puma', '~> 3.7'
@@ -43,8 +43,7 @@ group :development do
 end
 
 group :development do
-  gem 'sqlite3'
-  gem 'spring'
+  gem 'sqlite3', '~> 1.3', '>= 1.3.13'
 end
 
 group :production do
