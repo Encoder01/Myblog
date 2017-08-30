@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826194211) do
+ActiveRecord::Schema.define(version: 20170830173227) do
 
-  create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.bigint "resource_id"
+    t.integer "resource_id"
     t.string "author_type"
-    t.bigint "author_id"
+    t.integer "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -26,8 +26,7 @@ ActiveRecord::Schema.define(version: 20170826194211) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "admin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "username", limit: 50
+  create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -40,16 +39,19 @@ ActiveRecord::Schema.define(version: 20170826194211) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "username"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "posts_count", default: 0
+    t.integer "posts_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
     t.integer "data_file_size"
@@ -61,19 +63,19 @@ ActiveRecord::Schema.define(version: 20170826194211) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
-  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.text "body_description"
-    t.bigint "admin_user_id"
+    t.text "description_image"
+    t.integer "admin_user_id"
     t.integer "category_id"
     t.integer "reads_counter"
+    t.string "permalink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "description_image", limit: 500
     t.index ["admin_user_id"], name: "index_posts_on_admin_user_id"
-    t.index ["category_id"], name: "category_id"
+    t.index ["category_id"], name: "index_posts_on_category_id"
   end
 
-  add_foreign_key "posts", "admin_users"
 end

@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :admin_user
   belongs_to :category , counter_cache: true
+  validates :permalink, presence: true
   validates :admin_user_id, presence: true
   validates :category_id, presence: true
   attribute :reads_counter, :integer, default: 0
@@ -17,7 +18,7 @@ class Post < ApplicationRecord
   def next
     Post.where(["id > ?", id]).first
   end
-  
+
   def to_param
     permalink
   end
