@@ -10,13 +10,13 @@
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
 default: &default
-  adapter: mysql2
+  adapter: sqlite3
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password:
   host: localhost
-  socket: /tmp/mysql.sock
+
 development:
   <<: *default
   database: deneme3_development
@@ -52,4 +52,3 @@ production:
   database: deneme3_production
   username: deneme3
   password: <%= ENV['DENEME3_DATABASE_PASSWORD'] %>
-  socket: /tmp/mysql.sock

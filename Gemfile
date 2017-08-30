@@ -43,7 +43,7 @@ group :development do
 end
 
 group :development do
-	gem 'mysql2'
+  gem 'sqlite3'
   gem 'spring'
 end
 
