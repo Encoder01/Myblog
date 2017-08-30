@@ -45,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="434">
-              <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+              <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -273,12 +273,12 @@
       <workItem from="1503854159030" duration="2215000" />
       <workItem from="1503967033109" duration="1217000" />
       <workItem from="1504088076724" duration="3419000" />
-      <workItem from="1504101009687" duration="16677000" />
+      <workItem from="1504101009687" duration="17477000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167149000" />
+    <option name="totallyTimeSpent" value="167949000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1848" height="1102" extended-state="6" />
@@ -711,7 +711,7 @@
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
-          <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+          <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding />
         </state>
       </provider>
