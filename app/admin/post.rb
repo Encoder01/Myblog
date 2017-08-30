@@ -8,7 +8,12 @@ ActiveAdmin.register Post do
 #
   
   permit_params :title,:body, :body_description,:description_image,:category_id,:admin_user_id
-
+  controller do
+      def find_resource
+        Post.find_by_permalink( params[:id])
+      end
+    
+  end
 
   index do
     selectable_column
@@ -29,26 +34,26 @@ ActiveAdmin.register Post do
     f.select(:category_id,Category.all.map {|f| [f.name,f.id]},{include_blank: "Kategori Seçin"},{ class: "form-control" })
     f.inputs do
       f.input :title , class: "form-control"
+      f.input :permalink
     end
-    div class: "row" do
+    div  do
+      
+      div  do
+        f.label :Açıklama_resmi
+        f.file_field :description_image, class: "form-control"
+      end
+  
+      div class: "form-group" do
+        f.label :İçerik_açıklaması
+        f.text_area :body_description , class: "form-control", rows:"5"
+      end
     
-    div class:"col-md-12" do
+    div  do
       f.label :İçerik
       f.cktext_area :body , class: "form-control"
     end
     
-    
-    div class:"col-md-12" do
-      f.label :İçerik_açıklaması
-      f.cktext_area :body_description , class: "form-control"
-    end
-   
-    div class:"col-md-12" do
-      f.label :Açıklama_resmi
-      f.file_field :description_image, class: "form-control"
-    end
   end
-    
     f.actions
   end
 

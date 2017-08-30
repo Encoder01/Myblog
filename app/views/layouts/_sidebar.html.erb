@@ -38,15 +38,14 @@
             </div>
           </div>
           <div id="search-4" class="widget_container widget_content widget widget_search clearfix">
-            <form role="search" class="search-form" method="get" action="<%= posts_path %>">
-              <label>
+            <form action="<%= posts_path %>" method="get"  class="search-form"  >
+
                 <span class="screen-reader-text">Arama yap:</span>
                 <%= text_field_tag :search, params[:search], :placeholder => "Ara" ,:class => "search-field",title:"Arama yap:" %>
-              </label>
+              <button type="#{<% submit_tag%>}" class="list-unstyled" >
               <i class="search_submit_icon fa fa-search">
-                <input type="#{<% submit_tag%>}" class="search-submit" value="">
-                </input>
               </i>
+              </button>
             </form>
           </div>
         </div>

@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   
   def show
     @categories = Category.all
-    @category = Category.find(params[:id])
+    @category = Category.find_by_name(params[:id])
     @title = @category.name
     @posts = @category.posts.paginate(page: params[:page], per_page: 2)
   end

@@ -17,4 +17,8 @@ class Post < ApplicationRecord
   def next
     Post.where(["id > ?", id]).first
   end
+  
+  def to_param
+    permalink
+  end
 end

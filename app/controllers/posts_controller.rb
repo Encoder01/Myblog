@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def show
     category_find
     @posts = Post.all
-    @post = Post.find(params[:id])
+    @post = Post.find_by_permalink(params[:id])
     @post.reads_counter = @post.reads_counter+1
     @post.update(reads_count)
     end
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def update
     category_find
       if @post.update(post_params)
-         redirect_to @post, notice: 'Post was successfully updated.'
+         redirect_to @post, notice: 'Konu başarıyla güncellendi.'
      
       else
         render :edit
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: 'Post was successfully destroyed.'
+    redirect_to posts_url, notice: 'Konu başarıyla silindi.'
     end
 
   private
@@ -64,12 +64,15 @@ class PostsController < ApplicationController
       end
   
     def set_post
-      @post = Post.find(params[:id])
+         @post = Post.find_by_permalink(params[:id])
     end
-def reads_count
-  params.permit(:reads_counter)
-end
+  
+    def reads_count
+      params.permit(:reads_counter)
+    end
+  
     def post_params
       params.require(:post).permit(:title,:body,:body_description,:description_image,:admin_user_id,:category_id,:reads_counter,:search)
     end
+  
 end
