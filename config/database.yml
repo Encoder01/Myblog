@@ -16,7 +16,7 @@ default: &default
   username: root
   password:
   host: localhost
-
+  socket: /tmp/mysql.sock
 development:
   <<: *default
   database: deneme3_development
@@ -52,3 +52,4 @@ production:
   database: deneme3_production
   username: deneme3
   password: <%= ENV['DENEME3_DATABASE_PASSWORD'] %>
+  socket: /tmp/mysql.sock
