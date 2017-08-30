@@ -40,9 +40,6 @@ end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-end
-
-group :development do
   gem 'sqlite3', '~> 1.3', '>= 1.3.13'
 end
 
